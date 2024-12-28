@@ -37,56 +37,167 @@ public class Main {
         System.out.println("\nСотрудник с минимальной зарплатой: " + findEmployeeWithMinSalary(employees));
         System.out.println("\nСотрудник с максимальной зарплатой: " + findEmployeeWithMaxSalary(employees));
         System.out.println("\nСредняя зарплата: " + calculateAverageSalary(employees));
+        // индексация
+        indexation(employees, 1.1f);
+        // статические методы для отдела от 1 до 5-ти
+        printAllEmployees(employees, 2);
+        // int department = at one to five and all quickly;
+        printAllEmployees(employees);
+        System.out.println("\nСотрудник с минимальной зарплатой: " + findEmployeeWithMinSalary(employees, 5));
+        printAllEmployees(employees, 5);
+        System.out.println("\nСотрудник с максимальной зарплатой: " + findEmployeeWithMaxSalary(employees, 1));
+        printAllEmployees(employees, 1);
+        System.out.println("\nСумма затрат на зарплаты: " + calculateTotalSalary(employees, 3));
+        printAllEmployees(employees, 3);
+        System.out.println("\nСредняя зарплата: " + calculateAverageSalary(employees, 3));
+        // индексация
+        indexation(employees, 0.9f, 3);
     }
 
-    public static void printAllEmployees(Employee[] employees) {
-        System.out.println("Список всех сотрудников:");
-        for (Employee employee : employees) {
-            System.out.println(employee.toString());
-        }
-    }
-
+    // Basic
+//    public static void printAllEmployees(Employee[] employees) {
+//        System.out.println("Список всех сотрудников:");
+//        for (Employee employee : employees) {
+//            System.out.println(employee.toString());
+//        }
+//    }
+//
     // Метод для подсчета общей суммы затрат на зарплаты
-    public static double calculateTotalSalary(Employee[] employees) {
-        double totalSalary = 0;
-        for (Employee employee : employees) {
-            totalSalary += employee.getSalary();
-        }
-        return totalSalary;
-    }
+//    public static double calculateTotalSalary(Employee[] employees) {
+//        double totalSalary = 0;
+//        for (Employee employee : employees) {
+//            totalSalary += employee.getSalary();
+//        }
+//        return totalSalary;
+//    }
 
     // Метод для поиска сотрудника с минимальной зарплатой
-    public static Employee findEmployeeWithMinSalary(Employee[] employees) {
-        Employee minSalaryEmployee = employees[0];
+//    public static Employee findEmployeeWithMinSalary(Employee[] employees) {
+//        Employee minSalaryEmployee = employees[0];
+//        for (Employee employee : employees) {
+//            if (employee.getSalary() < minSalaryEmployee.getSalary()) {
+//                minSalaryEmployee = employee;
+//            }
+//        }
+//        return minSalaryEmployee;
+//    }
+
+    // Метод для поиска сотрудника с максимальной зарплатой
+//    public static Employee findEmployeeWithMaxSalary(Employee[] employees) {
+//        Employee maxSalaryEmployee = employees[0];
+//        for (Employee employee : employees) {
+//            if (employee.getSalary() > maxSalaryEmployee.getSalary()) {
+//                maxSalaryEmployee = employee;
+//            }
+//        }
+//        return maxSalaryEmployee;
+//    }
+
+    // Метод для подсчета средней зарплаты
+//    public static double calculateAverageSalary(Employee[] employees) {
+//        double totalSalary = calculateTotalSalary(employees);
+//        return totalSalary / employees.length;
+//    }
+
+    // Метод для вывода ФИО всех сотрудников
+//    public static void printAllEmployeeNames(Employee[] employees) {
+//        for (Employee employee : employees) {
+//            System.out.println(employee.getFullName());
+//        }
+//    }
+
+    // Метод индексации ЗП
+
+//    public static void indexation(Employee[] employees, float artIndexation) {
+//        for (Employee employee : employees) {
+//            employee.setSalary(employee.getSalary() * artIndexation);
+//        }
+//    }
+    // Second complexity
+
+    public static void printAllEmployees(Employee[] employees, Integer... department) {
+        int targetDepartment = department.length == 0 ? -1 : department[0];
+        String header = targetDepartment == -1 ? "Список всех сотрудников:" : "Список сотрудников отдела " + targetDepartment + ":";
+        System.out.println(header);
+
         for (Employee employee : employees) {
-            if (employee.getSalary() < minSalaryEmployee.getSalary()) {
+            if (targetDepartment == -1 || employee.getDepartment() == targetDepartment) {
+                System.out.println(targetDepartment != -1 ? employee.toString().replace(", department=" + employee.getDepartment(), "") : employee.toString());
+            }
+        }
+    }
+
+    public static Employee findEmployeeWithMinSalary(Employee[] employees, Integer... department) {
+        Employee minSalaryEmployee = null;
+        int targetDepartment = department.length == 0 ? -1 : department[0];
+
+        for (Employee employee : employees) {
+            if ((targetDepartment == -1 || employee.getDepartment() == targetDepartment) &&
+                    (minSalaryEmployee == null || employee.getSalary() < minSalaryEmployee.getSalary())) {
                 minSalaryEmployee = employee;
             }
         }
         return minSalaryEmployee;
     }
 
-    // Метод для поиска сотрудника с максимальной зарплатой
-    public static Employee findEmployeeWithMaxSalary(Employee[] employees) {
-        Employee maxSalaryEmployee = employees[0];
+    //
+    public static Employee findEmployeeWithMaxSalary(Employee[] employees, Integer... department) {
+        Employee maxSalaryEmployee = null;
+        int targetDepartment = department.length == 0 ? -1 : department[0];
+
         for (Employee employee : employees) {
-            if (employee.getSalary() > maxSalaryEmployee.getSalary()) {
+            if ((targetDepartment == -1 || employee.getDepartment() == targetDepartment) &&
+                    (maxSalaryEmployee == null || employee.getSalary() > maxSalaryEmployee.getSalary())) {
                 maxSalaryEmployee = employee;
             }
         }
         return maxSalaryEmployee;
     }
 
-    // Метод для подсчета средней зарплаты
-    public static double calculateAverageSalary(Employee[] employees) {
-        double totalSalary = calculateTotalSalary(employees);
-        return totalSalary / employees.length;
+    public static double calculateTotalSalary(Employee[] employees, Integer... department) {
+        double totalSalary = 0;
+        int targetDepartment = department.length == 0 ? -1 : department[0];
+
+        for (Employee employee : employees) {
+            if (targetDepartment == -1 || employee.getDepartment() == targetDepartment) {
+                totalSalary += employee.getSalary();
+            }
+        }
+        return totalSalary;
     }
 
-    // Метод для вывода ФИО всех сотрудников
-    public static void printAllEmployeeNames(Employee[] employees) {
+    public static double calculateAverageSalary(Employee[] employees, Integer... department) {
+        double totalSalary = calculateTotalSalary(employees, department);
+        int count = 0;
+        int targetDepartment = department.length == 0 ? -1 : department[0];
+
         for (Employee employee : employees) {
-            System.out.println(employee.getFullName());
+            if (targetDepartment == -1 || employee.getDepartment() == targetDepartment) {
+                count++;
+            }
+        }
+        return totalSalary / count;
+    }
+
+    public static void printAllEmployeeNames(Employee[] employees, Integer... department) {
+        int targetDepartment = department.length == 0 ? -1 : department[0];
+        String header = targetDepartment == -1 ? "Список всех сотрудников:" : "Список сотрудников отдела " + targetDepartment + ":";
+        System.out.println(header);
+
+        for (Employee employee : employees) {
+            if (targetDepartment == -1 || employee.getDepartment() == targetDepartment) {
+                System.out.println(employee.getFullName());
+            }
+        }
+    }
+
+    public static void indexation(Employee[] employees, float artIndexation, Integer... department) {
+        int targetDepartment = department.length == 0 ? -1 : department[0];
+
+        for (Employee employee : employees) {
+            if (targetDepartment == -1 || employee.getDepartment() == targetDepartment) {
+                employee.setSalary(employee.getSalary() * (artIndexation));
+            }
         }
     }
 }

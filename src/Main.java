@@ -54,7 +54,7 @@ public class Main {
         indexation(employees, 0.9f, 3);
 
         findEmployeeWithMoreUpSalary(employees, 73_900);
-findEmployeeWithMoreDownSalary(employees, 55_900);
+        findEmployeeWithMoreDownSalary(employees, 55_900);
     }
 
     // Basic
@@ -111,21 +111,21 @@ findEmployeeWithMoreDownSalary(employees, 55_900);
 
     // Метод индексации ЗП
 
-//    public static void indexation(Employee[] employees, float artIndexation) {
+    //    public static void indexation(Employee[] employees, float artIndexation) {
 //        for (Employee employee : employees) {
 //            employee.setSalary(employee.getSalary() * artIndexation);
 //        }
     // Second complexity
 //     Метод для поиска сотрудника с максимальной зарплатой
-public static void findEmployeeWithMoreUpSalary(Employee[] employees, double someSalary) {
-    System.out.println("Main.findEmployeeWithMoreUpSalary");
-    System.out.println("Employees with salary greater than " + someSalary + ":");
-    for (Employee employee : employees) {
-        if (employee.getSalary() > someSalary) {
-            System.out.println("ID: " + employee.getId() + ", Full Name: " + employee.getFullName() + ", Salary: " + employee.getSalary());
+    public static void findEmployeeWithMoreUpSalary(Employee[] employees, double someSalary) {
+        System.out.println("Main.findEmployeeWithMoreUpSalary");
+        System.out.println("Employees with salary greater than " + someSalary + ":");
+        for (Employee employee : employees) {
+            if (employee.getSalary() > someSalary) {
+                System.out.println("ID: " + employee.getId() + ", Full Name: " + employee.getFullName() + ", Salary: " + employee.getSalary());
+            }
         }
     }
-}
 
     public static void findEmployeeWithMoreDownSalary(Employee[] employees, double someSalary) {
         System.out.println("Main.findEmployeeWithMoreDownSalary");
@@ -136,7 +136,6 @@ public static void findEmployeeWithMoreUpSalary(Employee[] employees, double som
             }
         }
     }
-
 
 
     public static void printAllEmployees(Employee[] employees, Integer... department) {
@@ -151,8 +150,8 @@ public static void findEmployeeWithMoreUpSalary(Employee[] employees, double som
         }
     }
 
-public static String findEmployeeWithMinSalary(Employee[] employees, Integer... department) {
-    System.out.println("Main.findEmployeeWithMinSalary");
+    public static String findEmployeeWithMinSalary(Employee[] employees, Integer... department) {
+        System.out.println("Main.findEmployeeWithMinSalary");
 
         Employee minSalaryEmployee = null;
         int targetDepartment = department.length == 0 ? -1 : department[0];
@@ -163,7 +162,7 @@ public static String findEmployeeWithMinSalary(Employee[] employees, Integer... 
                 minSalaryEmployee = employee;
             }
         }
-    return String.valueOf(minSalaryEmployee);
+        return String.valueOf(minSalaryEmployee);
     }
 
     //

@@ -4,9 +4,9 @@ class Employee {
     private String fullName; // ФИО
     private int department; // Отдел (от 1 до 5)
     private double salary; // Зарплата
-
-    // Конструктор
-    public Employee(String fullName, int department, double salary) {
+    private EmployeeBook employeeBook;
+// Конструктор
+Employee(String fullName, int department, double salary) {
         this.id = idCounter++;
         this.fullName = fullName;
         this.department = department;
@@ -48,7 +48,7 @@ class Employee {
     }
 
     public void setId(int id) {
-        this.id = id;
+        id = this.id;
     }
 
     public void setFullName(String fullName) {

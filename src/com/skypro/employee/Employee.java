@@ -1,12 +1,13 @@
-class Employee {
+package com.skypro.employee;
+
+public class Employee {
     private static int idCounter = 1; // Статическая переменная-счетчик
     private int id; // Уникальный идентификатор сотрудника
     private String fullName; // ФИО
     private int department; // Отдел (от 1 до 5)
     private double salary; // Зарплата
-    private EmployeeBook employeeBook;
 // Конструктор
-Employee(String fullName, int department, double salary) {
+public Employee(String fullName, int department, double salary) {
         this.id = idCounter++;
         this.fullName = fullName;
         this.department = department;

@@ -1,8 +1,11 @@
+package com.skypro.main;
+
+import com.skypro.employeeBook.EmployeeBook;
+
 public class Main {
     public static void main(String[] args) {
-        // Метод для вывода всех сотрудников
         // Массив сотрудников
-        EmployeeBook employeeBook = new EmployeeBook(10);
+        EmployeeBook employeeBook = new EmployeeBook();
         // Добавление сотрудников
         employeeBook.addEmployee("Ivan Ivanov", 1, 50000);
         employeeBook.addEmployee("Petr Petrov", 2, 60000);
@@ -14,17 +17,20 @@ public class Main {
         employeeBook.addEmployee("Olga Orlova", 3, 75000);
         employeeBook.addEmployee("Alexey Zaitsev", 4, 59000);
         employeeBook.addEmployee("Natalia Romanova", 5, 61000);
-        employeeBook.removeEmployee(10);
-        employeeBook.addEmployee("Natalia Ivanova", 3, 120000);
-
-// Вывод всех сотрудников
-        for (Employee employee : employeeBook.getEmployees()) {
-            if (employee != null) { // Проверяем, что ячейка массива не пуста
-                System.out.println(employee);
-            }
-        }
-
-        Employee[] employees = employeeBook.getEmployees();
+//        employeeBook.removeEmployee(10);
+        // Вывод всех сотрудников
+        employeeBook.printAllEmployees();
+        employeeBook.addEmployee("Natalia Ivanova", 6, 120000);
+        // Метод для вывода всех сотрудников
+//
+//// Вывод всех сотрудников
+//        for (Employee employee : employeeBook.getEmployees()) {
+//            if (employee != null) { // Проверяем, что ячейка массива не пуста
+//                System.out.println(employee);
+//            }
+//        }
+//
+//        Employee[] employees = employeeBook.getEmployees();
 
 
 //        // статистические методы
